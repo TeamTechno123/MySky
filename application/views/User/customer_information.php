@@ -2,8 +2,6 @@
 <html>
 <?php
   $page = "customer_information";
-?>
-<?php
   $sky_user_id = $this->session->userdata('sky_user_id');
   $sky_company_id = $this->session->userdata('sky_company_id');
   $sky_roll_id = $this->session->userdata('sky_roll_id');
@@ -54,11 +52,19 @@
                   </div>
                   <div class="form-group col-md-12 select-sm">
                     <select class="form-control select2 form-control-sm" data-placeholder="Select Type Of Customer " name="customer_type_id" id="customer_type_id" style="width: 100%;" required>
-                        <option selected="selected" value="" >Select Type Of Customer</option>
-                        <?php foreach ($type_list as $list) { ?>
-                          <option value="<?php echo $list->customer_type_id; ?>" <?php if(isset($customer_type_id) && $customer_type_id == $list->customer_type_id){ echo 'selected'; } ?>><?php echo $list->type_name; ?></option>
-                        <?php } ?>
-                      </select>
+                      <option selected="selected" value="" >Select Type Of Customer</option>
+                      <?php foreach ($type_list as $list) { ?>
+                        <option value="<?php echo $list->customer_type_id; ?>" <?php if(isset($customer_type_id) && $customer_type_id == $list->customer_type_id){ echo 'selected'; } ?>><?php echo $list->type_name; ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-12 select-sm" style="display:none" id="product_div">
+                    <select class="form-control select2 form-control-sm" data-placeholder="Select Product" name="product_id" id="product_id" style="width: 100%;" required>
+                      <option selected="selected" value="" >Select Product</option>
+                      <?php foreach ($product_list as $list) { ?>
+                        <option value="<?php echo $list->product_id; ?>" <?php if(isset($product_id) && $product_id == $list->product_id){ echo 'selected'; } ?>><?php echo $list->product_name; ?> - &#8377;<?php echo $list->product_price; ?></option>
+                      <?php } ?>
+                    </select>
                   </div>
                   <div class="form-group col-md-12">
                     <input type="text" class="form-control form-control-sm" name="customer_name" id="customer_name" value="<?php if(isset($customer_name)){ echo $customer_name; } ?>" placeholder="Enter Customer Name" required>
@@ -122,9 +128,7 @@
               </form>
             </div>
           </div>
-
         </div>
-
       </div><!-- /.container-fluid -->
     </section>
   </div>
@@ -148,6 +152,28 @@
           }
         }
       });
+    });
+
+    $(document).ready(function(){
+      var customer_type_id = $('#customer_type_id').find("option:selected").val();
+      if(customer_type_id == 5){
+        $('#product_div').css('display','block');
+        $('#product_div #product_id').prop('required', true);
+      } else{
+        $('#product_div').css('display','none');
+        $('#product_div #product_id').prop('required', false);
+      }
+    });
+
+    $('#customer_type_id').on('change', function(){
+      var customer_type_id = $(this).find("option:selected").val();
+      if(customer_type_id == 5){
+        $('#product_div').css('display','block');
+        $('#product_div #product_id').prop('required', true);
+      } else{
+        $('#product_div').css('display','none');
+        $('#product_div #product_id').prop('required', false);
+      }
     });
   </script>
 </body>

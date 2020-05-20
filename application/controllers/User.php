@@ -6,6 +6,7 @@ class User extends CI_Controller{
     parent::__construct();
     $this->load->model('User_Model');
     $this->load->model('Transaction_Model');
+    date_default_timezone_set('Asia/Kolkata');
   }
 
   public function logout(){
@@ -51,7 +52,6 @@ class User extends CI_Controller{
     } else{
       $data['cust_cnt'] = $this->User_Model->get_count2('customer_id',$sky_company_id,'customer_status','active','user_id',$sky_user_id,'customer');
     }
-
 
     $data['sale_cnt'] = $this->User_Model->get_count('sale_id',$sky_company_id,'','','sale');
     $data['news_cnt'] = $this->User_Model->get_count('news_id',$sky_company_id,'','','news');
@@ -280,6 +280,7 @@ class User extends CI_Controller{
         'company_id' => $sky_company_id,
         'user_id' => $this->input->post('user_id'),
         'customer_type_id' => $this->input->post('customer_type_id'),
+        'product_id' => $this->input->post('product_id'),
         'customer_name' => $this->input->post('customer_name'),
         'customer_address' => $this->input->post('customer_address'),
         'customer_mob1' => $this->input->post('customer_mob1'),
@@ -367,30 +368,12 @@ class User extends CI_Controller{
 			curl_setopt($ch, CURLOPT_POSTFIELDS,$parameters);
 			$result = curl_exec($ch);
 
-      //
-      // $SMS2 = 'My-Sky Register- Customer:'.$customer_name.' Mobile:'.$customer_mob1.' Id:'.$cust_pre_id.' Created At: '.$date.'';
-			// $param['uname'] = 'wbcare';
-			// $param['password'] = '123123';
-			// $param['sender'] = 'AKCENT';
-			// $param['receiver'] = $customer_mob1;
-			// $param['route'] = 'TA';
-			// $param['msgtype'] = 1;
-			// $param['sms'] = $SMS2;
-			// $parameters = http_build_query($param);
-			// $url="http://msgblast.in/index.php/smsapi/httpapi";
-			// $ch = curl_init();
-			// curl_setopt($ch, CURLOPT_URL, $url);
-			// curl_setopt($ch,CURLOPT_HEADER, false);
-			// curl_setopt($ch, CURLOPT_POST, 1);
-			// curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
-			// curl_setopt($ch, CURLOPT_POSTFIELDS,$parameters);
-			// $result = curl_exec($ch);
-
       $this->session->set_flashdata('save_success','success');
       header('location:'.base_url().'User/customer_information_list');
     }
     $data['user_list'] = $this->User_Model->user_list2($sky_company_id);
     $data['type_list'] = $this->User_Model->get_list2('customer_type_id','ASC','customer_type');
+    $data['product_list'] = $this->User_Model->get_list2('product_id','ASC','product');
     $this->load->view('Include/head',$data);
     $this->load->view('Include/navbar',$data);
     $this->load->view('User/customer_information',$data);
@@ -406,7 +389,7 @@ class User extends CI_Controller{
     if($sky_roll_id == 1 || $sky_roll_id == 2){
       $data['customer_list'] = $this->User_Model->get_list($sky_company_id,'customer_id','DESC','customer');
     } else {
-      // echo $sky_user_id;
+    //   echo $sky_user_id;
       $data['customer_list'] = $this->User_Model->cust_list_by_ref($sky_user_id);
       // print_r($data['customer_list']);
     }
@@ -433,6 +416,7 @@ class User extends CI_Controller{
       $cust_data = array(
         'user_id' => $this->input->post('user_id'),
         'customer_type_id' => $this->input->post('customer_type_id'),
+        'product_id' => $this->input->post('product_id'),
         'customer_name' => $this->input->post('customer_name'),
         'customer_address' => $this->input->post('customer_address'),
         'customer_mob1' => $this->input->post('customer_mob1'),
@@ -504,6 +488,7 @@ class User extends CI_Controller{
     $data['user_id'] = $cust_details[0]['user_id'];
     $data['customer_id'] = $cust_details[0]['customer_id'];
     $data['customer_type_id'] = $cust_details[0]['customer_type_id'];
+    $data['product_id'] = $cust_details[0]['product_id'];
     $data['customer_name'] = $cust_details[0]['customer_name'];
     $data['customer_address'] = $cust_details[0]['customer_address'];
     $data['customer_mob1'] = $cust_details[0]['customer_mob1'];
@@ -522,6 +507,7 @@ class User extends CI_Controller{
 
     $data['user_list'] = $this->User_Model->user_list2($sky_company_id);
     $data['type_list'] = $this->User_Model->get_list2('customer_type_id','ASC','customer_type');
+    $data['product_list'] = $this->User_Model->get_list2('product_id','ASC','product');
     $this->load->view('Include/head',$data);
     $this->load->view('Include/navbar',$data);
     $this->load->view('User/customer_information',$data);
@@ -547,9 +533,9 @@ class User extends CI_Controller{
     $sky_company_id = $this->session->userdata('sky_company_id');
     $sky_roll_id = $this->session->userdata('sky_roll_id');
     if($sky_user_id == '' && $sky_company_id == ''){ header('location:'.base_url().'User'); }
-
+    // echo $customer_id;
     $data['customer_list'] = $this->User_Model->cust_list_by_ref($customer_id);
-    if(!$data['customer_list']){ header('location:'.base_url().'User/customer_information_list'); }
+    // if(!$data['customer_list']){ header('location:'.base_url().'User/customer_information_list'); }
     $this->load->view('Include/head',$data);
     $this->load->view('Include/navbar',$data);
     $this->load->view('User/customer_information_list',$data);

@@ -51,5 +51,20 @@ class Transaction_Model extends CI_Model{
     return $result;
   }
 
+  public function customer_target_report_list($from_date,$to_date,$customer_type_id){
+    $this->db->select('customer.*,customer_type.*,user.user_id as this_user_id');
+    $this->db->from('customer');
+    if($customer_type_id != ''){
+      $this->db->where('customer_type.customer_type_id', $customer_type_id);
+    }
+    $this->db->where("str_to_date(customer.customer_date,'%Y-%m-%d') BETWEEN str_to_date('$from_date','%d-%m-%Y') AND str_to_date('$to_date','%d-%m-%Y')");
+    $this->db->join('customer_type','customer.customer_type_id = customer_type.customer_type_id', 'LEFT');
+    $this->db->join('user','customer.customer_mob1 = user.user_mobile', 'LEFT');
+    $query = $this->db->get();
+    $result = $query->result();
+    // $q = $this->db->last_query();
+    return $result;
+  }
+
 }
 ?>

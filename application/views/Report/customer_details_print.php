@@ -111,6 +111,7 @@
     <tr valign="top">
       <td class="no-right-border">
         <p class="p_height"> <b>Sponser Id : </b></p>
+        <p class="p_height"> <b>Sponser Name : </b></p>
         <p class="p_height"> <b>Customer Id : </b></p>
         <p class="p_height"> <b>Name : </b></p>
         <p class="p_height"> <b>Mobile No 1.: </b></p>
@@ -126,7 +127,9 @@
         <p class="p_height"> <b>Added Date : </b></p>
       </td>
       <td colspan="2" class="no-left-border no-right-border">
+        <?php   $user_details = $this->User_Model->get_info_arr('user_id', $user_id, 'user'); ?>
         <p class="p_height"><?php echo $user_id; ?></p>
+        <p class="p_height"><?php echo $user_details[0]['user_name']; ?></p>
         <p class="p_height"><?php echo $cust_pre_id; ?></p>
         <p class="p_height"><?php echo $customer_name; ?></p>
         <p class="p_height"><?php echo $customer_mob1; ?></p>

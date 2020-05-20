@@ -48,6 +48,7 @@ class Report extends CI_Controller{
     }
     // Customer Details...
     $cust_details = $this->User_Model->get_info_arr('customer_id', $customer_id, 'customer');
+    $user_details = $this->User_Model->get_info_arr('user_id', $sky_user_id, 'user');
     if($cust_details == ''){ header('location:'.base_url().'User/customer_information_list'); }
     $data['user_id'] = $cust_details[0]['user_id'];
     $data['cust_pre_id'] = $cust_details[0]['cust_pre_id'];
@@ -89,6 +90,7 @@ class Report extends CI_Controller{
     $sale_details = $this->User_Model->get_info_arr('sale_id', $sale_id, 'sale');
     if($sale_details == ''){ header('location:'.base_url().'Transaction/salebill_list'); }
     $data['sale_no'] = $sale_details[0]['sale_no'];
+    $data['sale_id'] = $sale_details[0]['sale_id'];
     $data['sale_date'] = $sale_details[0]['sale_date'];
     $data['customer_id'] = $sale_details[0]['customer_id'];
     $data['total_amount'] = $sale_details[0]['total_amount'];
@@ -101,6 +103,33 @@ class Report extends CI_Controller{
     $data['sale_descr_list'] = $this->Transaction_Model->sale_descr_list($sale_id);
 
     $this->load->view('Report/invoice_print',$data);
+  }
+
+  // Target Report...
+  public function target_report(){
+    $sky_user_id = $this->session->userdata('sky_user_id');
+    $sky_company_id = $this->session->userdata('sky_company_id');
+    $sky_roll_id = $this->session->userdata('sky_roll_id');
+    if($sky_user_id == '' && $sky_company_id == ''){ header('location:'.base_url().'User'); }
+    // $data['roll_list'] = $this->User_Model->roll_list2();
+    $data['type_list'] = $this->User_Model->get_list2('customer_type_id','ASC','customer_type');
+    // $data['target_report'] = 'target_report';
+    $this->form_validation->set_rules('from_date','User Roll','trim|required');
+    if($this->form_validation->run() != FALSE){
+      $from_date = $this->input->post('from_date');
+      $to_date = $this->input->post('to_date');
+      $customer_type_id = $this->input->post('customer_type_id');
+      $data['customer_type_id2'] = $customer_type_id;
+      $data['from_date2'] = $from_date;
+      $data['to_date2'] = $to_date;
+      $data['customer_list'] = $this->Transaction_Model->customer_target_report_list($from_date,$to_date,$customer_type_id);
+      // print_r($data['customer_list']);
+    }
+
+    $this->load->view('Include/head',$data);
+    $this->load->view('Include/navbar',$data);
+    $this->load->view('Report/target_report',$data);
+    $this->load->view('Include/footer',$data);
   }
 
   public function get_user_by_roll(){

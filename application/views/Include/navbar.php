@@ -135,9 +135,15 @@
             <li class="nav-item">
               <a href="<?php echo base_url(); ?>Report/customer_report" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>
-                  Customer Report
-                </p>
+                <p>Customer Report</p>
+              </a>
+            </li>
+          </ul>
+          <ul class="nav nav-treeview" style="display: none;">
+            <li class="nav-item">
+              <a href="<?php echo base_url(); ?>Report/target_report" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Target Report</p>
               </a>
             </li>
           </ul>

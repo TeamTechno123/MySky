@@ -158,11 +158,11 @@ class User_Model extends CI_Model{
     }
     $this->db->where('company_id', $company_id);
     $this->db->from($tbl_name);
-    $query =  $this->db->get();
+      $query =  $this->db->get();
     $result = $query->num_rows();
     return $result;
   }
-
+  
   public function get_count2($id_type,$company_id,$key_type,$key,$key_type2,$key2,$tbl_name){
     $this->db->select($id_type);
     if($key != ''){
@@ -208,7 +208,7 @@ class User_Model extends CI_Model{
   //   return $result;
   // }
   //
-
+  
   function check_pwd($user_id,$old_password){
     $query = $this->db->select('user_id')
         ->where('user_password', $old_password)

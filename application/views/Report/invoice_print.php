@@ -101,6 +101,7 @@
         <p> <b style="padding-right:34px;">Address   </b> : <?php echo $customer_address; ?> </p>
         <p><b style="padding-right:15px;">Mobile No.  </b> : <?php echo $customer_mob1; ?> </p>
         <p><b style="padding-right:6px;">MY SKY ID </b> : SS267254 </p>
+        <p><b style="padding-right:6px;"> Invoice No. </b> :  <?php echo $sale_id; ?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b style="padding-right:6px;">Invoice Date </b> : <?php echo $sale_date; ?>  </p>
        </td>
     </tr>
     <tr>
@@ -133,10 +134,12 @@
       <td colspan="3"><p> <b>Amount In Words</b>  :  <?php echo $this->numbertowords->convert_number($total_amount); ?> Only</p>  </td>
     </tr>
   </table>
-<br><br><br>
+<br><br>
+<img style="float:right; padding-right:30px;" src="<?php echo base_url(); ?>assets/images/sign.jpg" width="100" alt="">
+<br><br>
 <p style="font-size:18px; font-weight: bold; text-align:right; padding-right:30px;"> For <?php echo $company_name; ?> </p>
 
- <img style="float:right; padding-right:20px;" src="<?php echo base_url(); ?>assets/images/sign.jpg" width="100" alt="">
+
 
   <!-- /.content -->
 </div>

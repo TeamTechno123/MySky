@@ -78,6 +78,9 @@
   $('#date5').datetimepicker({
     format: 'DD-MM-Y'
   })
+  $('#date6').datetimepicker({
+    format: 'MM-Y'
+  })
 </script>
 <script>
   $(function () {

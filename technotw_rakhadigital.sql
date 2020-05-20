@@ -1,0 +1,602 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Generation Time: Mar 11, 2020 at 10:10 AM
+-- Server version: 5.6.45
+-- PHP Version: 7.2.7
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `technotw_rakhadigital`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `admin_id` int(11) NOT NULL,
+  `admin_name` varchar(250) NOT NULL,
+  `admin_email` varchar(150) NOT NULL,
+  `admin_password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_email`, `admin_password`) VALUES
+(1, 'Techno', 'info@technothinksup.com', '123456');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company`
+--
+
+CREATE TABLE `company` (
+  `company_id` bigint(20) NOT NULL,
+  `company_name` varchar(250) NOT NULL,
+  `company_address` varchar(350) NOT NULL,
+  `company_city` varchar(150) NOT NULL,
+  `company_state` varchar(150) NOT NULL,
+  `company_district` varchar(150) NOT NULL,
+  `company_statecode` bigint(20) NOT NULL,
+  `company_pincode` varchar(20) DEFAULT NULL,
+  `company_mob1` varchar(12) NOT NULL,
+  `company_mob2` varchar(12) NOT NULL,
+  `company_email` varchar(150) NOT NULL,
+  `company_website` varchar(150) NOT NULL,
+  `company_pan_no` varchar(12) NOT NULL,
+  `company_gst_no` varchar(100) NOT NULL,
+  `company_lic1` varchar(150) NOT NULL,
+  `company_lic2` varchar(150) NOT NULL,
+  `company_start_date` varchar(15) NOT NULL,
+  `company_end_date` varchar(15) NOT NULL,
+  `company_logo` varchar(200) NOT NULL,
+  `company_seal` varchar(150) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `company`
+--
+
+INSERT INTO `company` (`company_id`, `company_name`, `company_address`, `company_city`, `company_state`, `company_district`, `company_statecode`, `company_pincode`, `company_mob1`, `company_mob2`, `company_email`, `company_website`, `company_pan_no`, `company_gst_no`, `company_lic1`, `company_lic2`, `company_start_date`, `company_end_date`, `company_logo`, `company_seal`, `date`) VALUES
+(1, 'My Sky & Rakha Digital', 'blok no 167/07 shop no 01, basharam marg,gandhinagar,kolhapur 416119', 'gandhinagar', 'Maharashtra', 'Kolhapur', 27, '111222', '9834576400', '7709392011', 'myskyrakha12@gmail.com', 'www.myskyrakhadigital.com', '', '', '', '444', '01-01-2019', '01-01-2021', '', '', '2020-01-10 08:40:56');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer`
+--
+
+CREATE TABLE `customer` (
+  `customer_id` bigint(20) NOT NULL,
+  `cust_pre_id` varchar(50) NOT NULL,
+  `company_id` bigint(20) NOT NULL,
+  `user_id` int(11) DEFAULT NULL COMMENT 'Reference User Id ',
+  `customer_type_id` int(11) DEFAULT NULL,
+  `customer_name` varchar(250) DEFAULT NULL,
+  `customer_address` text,
+  `customer_mob1` varchar(20) DEFAULT NULL,
+  `customer_mob2` varchar(20) DEFAULT NULL,
+  `customer_city` varchar(200) DEFAULT NULL,
+  `customer_state` varchar(200) DEFAULT NULL,
+  `customer_adhar_no` varchar(20) DEFAULT NULL,
+  `customer_pan_no` varchar(20) DEFAULT NULL,
+  `customer_bank` varchar(250) DEFAULT NULL,
+  `customer_b_branch` varchar(250) DEFAULT NULL,
+  `customer_acc_no` varchar(100) DEFAULT NULL,
+  `customer_b_ifsc` varchar(50) DEFAULT NULL,
+  `customer_password` varchar(100) DEFAULT NULL,
+  `customer_img` varchar(250) DEFAULT NULL,
+  `customer_status` varchar(50) NOT NULL DEFAULT 'active',
+  `customer_addedby` int(11) DEFAULT NULL,
+  `customer_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`customer_id`, `cust_pre_id`, `company_id`, `user_id`, `customer_type_id`, `customer_name`, `customer_address`, `customer_mob1`, `customer_mob2`, `customer_city`, `customer_state`, `customer_adhar_no`, `customer_pan_no`, `customer_bank`, `customer_b_branch`, `customer_acc_no`, `customer_b_ifsc`, `customer_password`, `customer_img`, `customer_status`, `customer_addedby`, `customer_date`) VALUES
+(29, 'SS_29', 1, 34, 1, 'SACHIN SATGONDA PATIL', 'PATIL GALLI,RAJAPUR,SHIROL', '9307477408', '', 'KOLHAPUR', 'MAHARASTRA', '695902125734', '', 'ICICI BANK', 'TAKALI', '637201000588', 'ICIC0006372', '9307477408', NULL, 'active', 1, '2020-01-14 09:00:59'),
+(36, 'CL_36', 1, 45, 4, 'MOHAMMAD ANAS', 'S/O MOHAMMAD KALEEM,BANSURA,SITAPUR,UTTAR PRADESH 261204', '7525044572', '', 'LUCKNOWN', 'UTTAR PRADESH', '3018  3842  2435', '', 'BANK OF INDIA', 'MAHMOODABAD', '782410110013701', 'BKID0007824', '7525044572', 'customer_36_1580190138.', 'active', 22, '2020-01-28 05:42:18'),
+(37, 'CL_37', 1, 45, 4, 'DASTGEER', 'S/O SHABBEER,SONSA MAJARA,BANABIRAPUR,POKHRA KALAM,SITAPUR,UTTAR PRADESH 261201', '7518422112', '', 'LUCKNOWN', 'UTTAR PRADESH', '4775  3793  8992', '', 'ALLAHABAD BANBK', 'HAJIPUR SITAPUR', '59070094013', 'ALLA0211181', '7518422112', NULL, 'active', 22, '2020-01-28 05:52:11'),
+(38, 'CL_38', 1, 45, 4, 'SHUBHAM  KUMAR', 'S/O KAMTA PRASAD , BANSURA , SITAPUR, UTTAR PRADESH 4757  6201  3729 ', '7390897070', '', 'LUCKNOWN', 'UTTAR PRADESH', '4757  6201  3729', '', 'ARYAVART BANK', 'ARYAVART GB-GOMTI NAGAR BR', '612940100007933', 'BKID0ARYAGB', '7390897070', 'customer_38_1580274446.jpg', 'active', 1, '2020-01-29 05:07:26'),
+(40, 'SS_40', 1, 33, 1, 'SANJAY JAGANNATH KARANDE', 'CHAMBHAR GALLI, ROHIDAS NAGAR, P/O-WALAVA,SANGALI,MAHARASHTRA 416313  ', '9673979836', '', 'SANGLI', 'MAHARASTRA', '9983  9840  0825', '', 'BANK OF BARRODA', 'WALVA', '17210100008248', 'BARB0WALVAX', '9673979836', NULL, 'active', 1, '2020-02-11 13:53:39'),
+(41, 'CL_41', 1, 33, 4, 'ASHWINI  CHANDRAKANT  KAMBLE', 'BEGHAR VASAHAT HAROLI, TA-SHIROL,DIS-KOLHAPUR MAHARASHTRA 416102', '9130828637', '', 'KOLHAPUR', 'MAHARASTRA', '8419  4920  9131 ', '', 'KARNATKA BANK', 'KOLHAPUR', '4232500101077201', 'KARB0000423', '9130828637', NULL, 'active', 22, '2020-01-29 06:44:11'),
+(42, 'SS_42', 1, 50, 1, 'PRAVIN BALASO HINGMIRE', 'MAL BHAG RAJAPUR, RAJAPUR, TA-SHIROL,DIS-KOLHAPUR MAHARASHTRA 416106', '917666220585', '', 'KOLHAPUR', 'MAHARASTRA', '3177  2240  9191', '', 'IDBI BANK', 'RAJAPUR', '1825104000034654', 'IBKL0001825', '7666220585', NULL, 'active', 22, '2020-01-29 06:48:20'),
+(43, 'SS_43', 1, 50, 1, 'NEMCHAND GAJENDRA SANADI', 'SAMAJ MANDIR JAVAL,RAJAPUR,TA-SHIROL,DIS-KOLHAPUR MAHARASHTRA 416106', '919881050587', '', 'KOLHAPUR', 'MAHARASTRA', '8862  5524  8821', '', 'IDBI BANK', 'RAJAPUR', '1825104000054861', 'IBKL0001825', '9881050587', NULL, 'active', 22, '2020-01-29 06:58:52'),
+(44, 'SS_44', 1, 38, 1, 'SANJAY  MALAPPA  AVATI', 'PATIL GALLI, RAJAPUR,TA-SHIROL,DIS-KOLHAPUR,MAHARASHTRA 416106', '9689402696', '', 'KOLHAPUR', 'MAHARASTRA', '5548  2365  5195', '', 'FEDERAL BANK LTD ', 'NARSOBAWADI', '14820100125942', 'FDRL0001482', '9689402696', NULL, 'active', 22, '2020-01-29 07:03:31'),
+(45, 'SS_45', 1, 38, 1, 'TATOBA  ANNASO  HINGAMIRE', 'GRAMPANCHAYAT MAGE, RAJAPUR,TA-SHIROL, DIS-KOLHAPUR,MAHARASHTRA 416106', '9172037176', '', 'KOLHAPUR', 'MAHARASTRA', '6479  3189  6450', '', 'IDBI BANK', 'RAJAPUR', '1825104000000091', 'IBKL0001825', '91720307176', NULL, 'active', 22, '2020-01-29 07:11:43'),
+(46, 'SS_46', 1, 38, 1, 'MHADAGONDA  APPASO   PATIL', 'BIROBA ROAD,PATIL MALA,RAJAPUR,TA-SHIROL.DIS-KOLHAPUR , MAHARASHTRA 416106', '9767088085', '', 'KOLHAPUR', 'MAHARASTRA', '3537  5102  9324 ', '', 'IDBI BANK', 'RAJAPUR', '1825104000004282', 'IBKL0001825', '9767088089', NULL, 'active', 22, '2020-03-02 09:43:58'),
+(47, 'SS_47', 1, 54, 1, 'KUMAR  MAHADEV  SUTAR', 'MAHADEV MANDIR JAVAL,RAJAPUR.TA-SHIROL,DIS-KOLHAPUR , MAHARSHTRA 416106', '9763894530', '', 'KOLHAPUR', 'MAHARASTRA', '7304  0916  3209  ', '', 'FEDERAL BANK LTD ', 'NARSOBAWADI', '14820100125074', 'FDRL0001482', '9763894530', NULL, 'active', 22, '2020-01-29 07:25:55'),
+(48, 'SS_48', 1, 50, 1, 'SACHIN  TATGONDA  PATIL', 'PATIL GALLI,RAJAPUR DHARAN , RAJAPUR ,TA-SHIROL,DIS-KOLHAPUR , MAHARASHTRA 416106', '919307477408', '', 'KOLHAPUR', 'MAHARASTRA', '6959  0212  5734 ', '', 'ICICI BANK', 'TAKALI', '637201000588', 'ICIC0006372', '9307477408', NULL, 'active', 22, '2020-01-29 07:51:49'),
+(49, 'SS_49', 1, 55, 1, 'ASHOK  RAGHUNATH  SUTAR', 'AWATI MALA RAJAPUR ,TAL- SHIROL , DIS-KOLHAPUR , MAHARASHTRA 416106', '9623308440', '', 'KOLHAPUR', 'MAHARASTRA', '7602  0316  8551 ', '', 'IDBI BANK', 'RAJAPUR', '1825104000022312', 'IBKL0001825', '9623308440', NULL, 'active', 22, '2020-02-05 06:59:03'),
+(50, 'IN_50', 1, 61, 3, 'AMAR KRISHNAT TIPUGDE', '493, NIKAM GALLI,KALMBE,TARF THANE,KARVIR,KOLHAPUR,MAHARASHTRA 416007', '9823811836', '', 'KOLHAPUR', 'MAHARASTRA', '', '', 'BANK OF MAHARASHTRA ', 'SALOKHENAGAR, KOLHAPUR ', '68027065292', 'MAHB0001130', '9823811836', NULL, 'active', 22, '2020-02-06 12:51:15'),
+(51, 'SS_51', 1, 23, 1, 'DIPALI  SHIVRAJ  GURAV', 'W/O SHIVRAJ GURAV , 2538 B WARD,NEAR KHASBAAG , MAGALVAR PETH ,KOLHAPUR ,MAHARASHTRA  416012', '9371618282', '', 'KOLHAPUR', 'MAHARASTRA', '8969  3838  8958 ', '', 'SHREE WARANA SHANKARI BANK LTD.', 'LAXMIPURI KOLHAPUR', '3970030800010733', 'HDFC0CSWSBL', '9371618282', NULL, 'active', 22, '2020-02-07 12:02:40'),
+(54, 'SS_54', 1, 51, 1, 'SHUBHAM DILIP GAIKWAD', 'PETH BHAG  VTC : WALWA , PO: WALWA , DIS : SANGALI , MAHARASHTRA 416313 ', '9665125375', '', 'SANGLI', 'MAHARASTRA', '5680  3612  1096 ', '', 'ICICI BANK ', 'PALUS', '200101000261', 'ICIC0002001', '9665125375', NULL, 'active', 1, '2020-02-11 13:59:08'),
+(55, 'SS_55', 1, 69, 1, 'KRUSHANATH SURESH ZENDE', 'KOTHBHAG , WALWA , SANGALI , WALWA , MAHARASHTRA 416313', '8055849898', '', 'SANGLI', 'MAHARASTRA', '5242  8744  1280', '', 'BANK OF BARRODA', 'WALVA', '172101100004894', 'BARB0WALVAX', '8055849898', NULL, 'active', 1, '2020-02-11 14:27:17'),
+(56, 'TT_56', 1, 61, 2, 'NITIN  SHANATARAM  AMBAVANE', '193 TALEGAOV WADI,BARVAI BRIDGE,POYANJE,PANVEL,RAIGARH,MAHARASHTRA 410221', '919324085223', '', 'PANVEL ', 'MAHARASTRA', '5026  6193  2421', '', 'HDFC BANK ', 'PATAL GANGA ', '00251000018613', 'HDFC0000025', '9324085223', NULL, 'active', 22, '2020-02-13 13:27:15'),
+(58, 'SS_58', 1, 25, 1, 'EKNATH  KISHOR SHINDE', 'S/O KISHOR GOVIND SHINDE , PURSHOTTAM MISHRA CHAWL, ROOM NO.11 . OPP TELEPHONE EXCHANGE VILE PARLE EAST,MUMBAI,MAHARASHTRA 400057', '9664091957', '', 'MUMBAI', 'MAHARASTRA', '9997  2808  0413', '', 'CANARA BANK ', 'MUMBAI VILE PARLE EAST ', '0224101061055', 'CNRB0000224', '9664091957', NULL, 'active', 22, '2020-02-15 05:21:44'),
+(59, 'SS_59', 1, 25, 1, 'GOPINATH  NARAYAN  JAGTAP', 'S/O NARAYAN JAGTAP,NEAR SWAMI VIVEKANAND SCHOOL, A/P , TA- KHALAPUR,DIS-RAIGAD , ANJIRUN, RAIGARH MAHARASHTRA 410202', '9766996616', '', 'MUMBAI', 'MAHARASTRA', '3487  2422  9719 ', '', 'BANK OF INDIA', 'KHALAPUR', '120110110002158', 'BKID0001201', '9766996616', NULL, 'active', 22, '2020-02-15 05:33:24'),
+(60, 'SS_60', 1, 25, 1, 'OMKAR  LALURAM  KUMAWAT', 'PLOT NO 46,SECTOR-09, KAMOTHE,NAVI MUMBAI,PANVEL,PANVEL RAIGARH , MAHARASHTRA 410206', '9324085224', '', 'MUMBAI', 'MAHARASTRA', '9696  5863  7445', '', 'HDFC BANK ', 'PATAL GANGA ', '00251000018613', 'HDFC0000025', '9324085224', NULL, 'active', 22, '2020-02-15 05:50:40'),
+(61, 'SS_61', 1, 76, 1, 'SAGAR  BAKSHARAM  GOGIYA', 'S/O BAKSHARAM GOGIYA,190/A,SANTKRUPA,OPP. GAJANAN MARKET GANDHINAGAR,KARVIR,KOLHAPUR,MAHARASHTRA 416119', '8888000572', '', 'KOLHAPUR', 'MAHARASTRA', '8253  6355  4180 ', '', 'STATE BAK OF INDIA ', 'NEW SHAHUPURI ', '38002200019', 'SBIN0015087', '8888000572', NULL, 'active', 22, '2020-02-15 09:16:36'),
+(62, 'TT_62', 1, 78, 2, 'YUNNUS  BASHIR  INAMADAR', '50 PHATA ,OUNE PANDHARPUR ROAD,AMBIKA DEVI MANDIR JAVAL ,MANDAVE ,SOLAPUR MAGARASHTRA 413111', '7756868624', '', 'SOLAPUR ', 'MAHARASTRA', '8756  5110  6386 ', '', 'INDIAN OVERSEAS BANK ', 'NATEPUTE', '375201000001592', 'IOBA0003752', '7756868624', NULL, 'active', 22, '2020-02-15 10:03:31'),
+(63, 'TT_63', 1, 79, 2, 'SAIFALI  ALLAUDDIN  TAMBOLI', 'MANDAVE,SOLPAUR,MAHARASHTRA 413111', '7219854598', '', 'SOLAPUR ', 'MAHARASTRA', '6444  1388  3967', '', 'IDBI BANK', 'NATEPUTE ', '0476104000082697', 'IBKL0000476', '7219854598', NULL, 'active', 22, '2020-02-15 10:06:43'),
+(64, 'CL_64', 1, 52, 4, 'CHAYA VIJAY VATAKAR', 'C/O VIJAY VATAKAR , K3 B WARD,JAVAHAR NAGAR,DR.JOGADANDE HOSPITAL BAJULA , JAVAHARNAGAR KOLHAPUR ,KARAVIR , RAJARAMPURI KOLHAPUR,MAHARASHTRA 4160008 ', '9527878826', '', 'KOLHAPUR', 'MAHARASTRA', '6141  0094  7895 ', '', 'NKGSB BANK ', 'MAIN BRANCH KOLHAPUR ', '026130500000078 ', 'NKGS0000026', '9527878826', NULL, 'active', 22, '2020-02-15 10:24:13'),
+(65, 'SS_65', 1, 55, 1, 'ASHOK SURESH DIVATE', 'DHARANWADI RAJAPUR,TA-SHIROL,DIS-KOLHAPUR , MAHARASHTRA 416106', '9881692717', '', 'KOLHAPUR', 'MAHARASTRA', '4423  1511 3283', '', 'IDBI BANK', 'RAJAPUR', '1825104000007559', 'IBKL001825', '9881692717', NULL, 'active', 22, '2020-02-15 10:27:07'),
+(67, 'CL_67', 1, 23, 4, 'MAHESH  PUNDLIK  KAMBLE', 'BOUDDHA SAMAJ MANDIR JAVAL,AURWAD,TA-SHIROL , DIS-KOLHAPUR,MAHARASHTRA 416104', '7588185172', '', 'KOLHAPUR', 'MAHARASTRA', '7101  5196  2317  ', '', 'STATE BAK OF INDIA ', 'SHIROL ', '20403475402', 'SBIN0001152', '7588185172', NULL, 'active', 22, '2020-02-29 05:16:39'),
+(68, 'SS_68', 1, 85, 1, 'SUDARSHAN  GOVIND  GUNDLE', 'S/O GOVIND GUNDLE,DATALE,TA-KANDHAR,DIS-NANDED,NEAR MARUTI MANDIR,DATALA,NANDED,MAHARASHTRA 431714', '9158407048', '', 'NANDED ', 'MAHARASTRA', '3448  1224  0716 ', '', 'STATE BAK OF INDIA ', 'NANDED ', '62248098231 ', 'SBIN0020049 ', '9158407048', NULL, 'active', 22, '2020-02-25 06:26:50'),
+(69, 'CL_69', 1, 86, 4, 'ABHIJIT  EKANATH  PATIL', 'PATIL GALII,TA-KAGAL,KENAVADE,KOLHAPUR ,MAHARASHTRA 416216', '9970704658', '', 'KOLHAPUR', 'MAHARASTRA', '9535  8000  0813 ', '', 'AXIS BANK ', '', '918010002183580', 'UTIB0001323', '9970704658', NULL, 'active', 22, '2020-02-25 07:28:18'),
+(70, 'TT_70', 1, 24, 2, 'RIZWAN  RAFIK  BAGWAN', 'S/O RAFIK BAGWAN,ROOM NO 03,FATIMA CHWAL,RAMBAUG LANE NO 0,NEAR JILANI BUNLDING,KALYAN WEST,KALYAN,THANE,MAHARASHTRA 421301 ', '8898453373', '', 'MUMBAI', 'MAHARASTRA', '2811  2933  3646 ', '', 'KARNATKA BANK LTD', 'KALYAN MUMBAI ', '4272500103076101', 'KARB0000427', '8898453373', NULL, 'active', 22, '2020-02-25 10:51:26'),
+(71, 'TT_71', 1, 88, 2, 'FARUK  MOHAMMED  HANIF  SHEKH', 'JILANI BILDING RAMBAUG LANE 0 , KALYAN(WEST),KALYAN ,KALYAN D.C KALYAN THANE,MAHARASHTRA 421301', '9768552050', '', 'MUMBAI', 'MAHARASTRA', '2518  5251  2603 ', '', 'THE KALYAN JANATA SAHAKARI BANK LTD', 'RAMBHUG ', '003011100003168', 'KJSB0000003', '9768552050', NULL, 'active', 22, '2020-02-25 11:12:10'),
+(72, 'TT_72', 1, 89, 2, 'NAZIA  SHAHNAWAZ  SAYYED', 'SAATPIR TOWER ROOM NO 405,HUNUMAN MANDIR ROAD,MUMBRA POLICE STATION SAMRAT THANE, MUMBRA THANE MAHARASHTRA 400612 ', '7738524802', '', 'MUMBAI', 'MAHARASTRA', '8939  9880  0156 ', '', 'THE THANE DISTRICT CENTRAL CO.OP. BANK ', 'MUMBRA', '003600300017789', 'TDCB0000036', '7738524802', NULL, 'active', 22, '2020-02-25 11:24:35'),
+(73, 'TT_73', 1, 90, 2, 'MANOJ  MADHAV  CHAUHAN', 'ROOM NO 2002 , MIIDC ROAD , NEAR HANUMAN MANDIR,YADAV NAGAR,NAVI MUMBAI, AIROLI,THANE  MAHARASHTRA 400708 ', '8108007478', '', 'MUMBAI', 'MAHARASTRA', '9273  5469  6065 ', '', 'INDIAN BANK', 'AIROLI ', '615418272 ', 'IDIB000A170', '8108007478', NULL, 'active', 22, '2020-02-25 11:36:43'),
+(74, 'CL_74', 1, 86, 4, 'SHIVAJI  DINAKAR  MAGADUM', 'GOKUL SHIRGAON,KOLHAPUR,MAHARASHTRA 416234 ', '8805129939', '', 'KOLHAPUR', 'MAHARASTRA', '6966  3468  7720 ', '', 'BANK OF MAHARASHTRA ', 'MID CORPORATE BRANCH KOLHAPUR ', '25049126002', 'MAHB0001575', '8805129939', NULL, 'active', 22, '2020-02-26 07:07:19'),
+(77, 'CL_77', 1, 86, 4, 'KUNDALIK  ISHWARA  PATIL', 'MALBHAG ,A/P KASARI , KAGAL , KOLHAPUR , MAHARASHTRA 416218', '8390104342', '', 'KOLHAPUR', 'MAHARASTRA', '3796  1507  9240 ', '', 'BANK OF MAHARASHTRA ', 'SENAPATI KAPSI', '68011871595', 'MAHB0000499', '8390104342', NULL, 'active', 22, '2020-02-28 08:52:38'),
+(78, 'CL_78', 1, 92, 4, 'SARITA  ANIL  PATIL', '887 DATTA NIVAS,LAST BUS STOP,KADLGAV,R K NAGAR,KOLHAPUR,MAHARASHTRA  416013', '9765137711', '', 'KOLHAPUR', 'MAHARASTRA', '7473  2988  1820', '', 'SHRI VIRSHAV CO-OP BANK LI.KOLHAPUR', 'R.K.KOLHAPUR', '012010500008543', 'HDFC0CVCB12', '9765137711', NULL, 'active', 22, '2020-03-08 08:52:52'),
+(79, 'CL_79', 1, 92, 4, 'BALKRUSHN  SHIVRAM  JADHAV', 'VHANALI,KOLHAPUR,MAHARASHTRA 416221', '9405170116', '', 'KOLHAPUR', 'MAHARASTRA', '8299  6391  4171', '', 'BANK OF INDIA', 'BACHANI ', '094210100005261', 'BKID0000942', '9405170116', NULL, 'active', 22, '2020-03-08 08:57:49'),
+(80, 'CL_80', 1, 97, 4, 'SAVITA  ARUN  POWAR', 'M/P VHANALI , TA- KAGAL,,KOLHAPUR,MHARASHTRA 416221', '9422226461', '', 'KOLHAPUR', 'MAHARASTRA', '6730  0800  8248', '', 'BANK OF INDIA', 'BACHANI ', '094210110009281', 'BKID0000942', '9422226461', NULL, 'active', 22, '2020-03-08 09:00:45'),
+(81, 'SS_81', 1, 85, 1, 'ANUJA  SANTOSH  SWAMI', 'RAMLING MANDIR , UMALWAD, KOLHAPUR , MAHARAHTRA ', '8265093538', '', 'KOLHAPUR', 'MAHARASTRA', '4000  6638  4255 ', '', 'FEDERAL BANK LTD ', 'JAYSINGPUR', '14910100334566', 'FDRL0001491', '8265093538', NULL, 'active', 22, '2020-03-08 09:05:32'),
+(82, 'SS_82', 1, 99, 1, 'VIJAY  SURESH  KUMBHAR', 'KUMBHAR GALLI , UMALWAD,KOLHAPUR,MAHARASHTRA ', '9011671983', '', 'KOLHAPUR', 'MAHARASTRA', '7662  0704  5734', '', 'JANTA SAHAKARI BANK LTD.PUNE ', 'JAYSINGPUR', '066220100000686', 'JSBP0000066', '9011671983', NULL, 'active', 22, '2020-03-08 09:10:28'),
+(83, 'SS_83', 1, 99, 1, 'PRITI  PRAMOD  GURAV', 'UMALWAD , SHIROL,KOLHAPUR,MAHARASHTRA 416101', '9975647221', '', 'KOLHAPUR', 'MAHARASTRA', '6765  6535  9983', '', 'FEDERAL BANK LTD ', 'JAYSINGPUR', '14910100367428', 'FDRL0001491', '9975647221', NULL, 'active', 22, '2020-03-09 08:36:23'),
+(84, 'CL_84', 1, 23, 4, 'SANJAY  BHUAL  KOTHALI', 'KOLLI GALLI,AKIWAT,TA-SHIROL,DIS-KOLHAPUR,MAHARASHTRA  416106', '9767747808', '', 'KOLHAPUR', 'MAHARASTRA', '5494  9178  4039 ', '', 'RBL BANK ', 'AKKIWAT ', '1003010010003857', 'RATN0000030', '9767747809', NULL, 'active', 22, '2020-03-09 09:07:22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer_type`
+--
+
+CREATE TABLE `customer_type` (
+  `customer_type_id` int(11) NOT NULL,
+  `type_name` varchar(250) NOT NULL,
+  `no_of_members` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `customer_type`
+--
+
+INSERT INTO `customer_type` (`customer_type_id`, `type_name`, `no_of_members`) VALUES
+(1, 'SS Customer', '3'),
+(2, 'TT Customer', '2'),
+(3, 'IN Customer', '3'),
+(4, 'CL CUSTOMER', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `news`
+--
+
+CREATE TABLE `news` (
+  `news_id` bigint(20) NOT NULL,
+  `company_id` bigint(20) NOT NULL,
+  `news_name` text,
+  `news_addedby` varchar(50) DEFAULT NULL,
+  `news_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roll`
+--
+
+CREATE TABLE `roll` (
+  `roll_id` int(11) NOT NULL,
+  `roll_name` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `roll`
+--
+
+INSERT INTO `roll` (`roll_id`, `roll_name`) VALUES
+(1, 'Admin'),
+(2, 'Office Admin'),
+(3, 'SRM'),
+(4, 'RM'),
+(5, 'Customer'),
+(6, 'CRE');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sale`
+--
+
+CREATE TABLE `sale` (
+  `sale_id` bigint(20) NOT NULL,
+  `company_id` int(11) NOT NULL,
+  `sale_no` bigint(20) NOT NULL,
+  `sale_date` varchar(20) NOT NULL,
+  `customer_id` bigint(20) NOT NULL,
+  `total_amount` double NOT NULL,
+  `sale_addedby` varchar(50) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `sale`
+--
+
+INSERT INTO `sale` (`sale_id`, `company_id`, `sale_no`, `sale_date`, `customer_id`, `total_amount`, `sale_addedby`, `date`) VALUES
+(1, 1, 1, '14-01-2020', 29, 0, '1', '2020-01-14 09:14:28'),
+(2, 1, 2, '28-01-2020', 38, 30000, '22', '2020-01-28 06:50:54'),
+(3, 1, 3, '07-02-2020', 51, 25000, '22', '2020-02-07 11:54:58'),
+(4, 1, 4, '07-02-2020', 52, 50000, '22', '2020-02-07 12:00:27'),
+(5, 1, 5, '10-02-2020', 53, 25000, '22', '2020-02-10 10:24:37'),
+(6, 1, 6, '15-02-2020', 57, 45000, '22', '2020-02-15 05:12:46'),
+(7, 1, 7, '15-02-2020', 60, 16000, '22', '2020-02-15 05:52:23'),
+(8, 1, 8, '15-02-2020', 61, 25000, '22', '2020-02-15 09:22:20'),
+(9, 1, 9, '17-02-2020', 66, 34500, '22', '2020-02-17 05:32:31'),
+(10, 1, 10, '18-02-2020', 67, 45000, '22', '2020-02-18 13:59:31'),
+(11, 1, 11, '28-02-2020', 69, 42000, '22', '2020-02-28 08:16:02'),
+(12, 1, 12, '28-02-2020', 74, 42000, '22', '2020-02-28 08:21:21'),
+(13, 1, 13, '28-02-2020', 77, 42000, '22', '2020-02-28 09:00:26'),
+(14, 1, 14, '09-03-2020', 81, 25000, '22', '2020-03-09 08:40:02'),
+(15, 1, 15, '09-03-2020', 83, 25000, '22', '2020-03-09 08:41:44'),
+(16, 1, 16, '09-03-2020', 84, 45000, '22', '2020-03-09 09:14:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sale_descr`
+--
+
+CREATE TABLE `sale_descr` (
+  `sale_descr_id` bigint(20) NOT NULL,
+  `sale_id` bigint(20) NOT NULL,
+  `sale_description` varchar(250) NOT NULL,
+  `sale_descr_amt` double NOT NULL,
+  `descr_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `sale_descr`
+--
+
+INSERT INTO `sale_descr` (`sale_descr_id`, `sale_id`, `sale_description`, `sale_descr_amt`, `descr_date`) VALUES
+(1, 1, '', 0, '2020-01-14 09:14:28'),
+(2, 2, 'BIKE  DOWN PAYMENT ', 15000, '2020-01-28 06:50:54'),
+(3, 2, 'GPS TRACKER WITH 03 YEAR RECHARGE', 12000, '2020-01-28 06:50:54'),
+(4, 2, 'PERSONAL INSURANCE 03 YEAR', 3000, '2020-01-28 06:50:54'),
+(5, 3, 'BIKE DOWN PAYMENT', 10000, '2020-02-07 11:51:49'),
+(6, 3, 'GPS TRACKER WITH 03 YEAR RECHARGE ', 12000, '2020-02-07 11:54:58'),
+(7, 3, 'PERSONAL INSURANCE 03 YEAR ', 3000, '2020-02-07 11:54:58'),
+(8, 4, 'BIKE DOWN PAYMENT ', 15000, '2020-02-07 12:00:27'),
+(9, 4, 'GPS TRACKER WITH 03 YEAR RECHARGE ', 12000, '2020-02-07 12:00:27'),
+(10, 4, 'PERSONAL INSURANCE 03 YEAR ', 3000, '2020-02-07 12:00:27'),
+(11, 4, '3 UNDER COUSTMER AND UPER MODEL BIKE ', 20000, '2020-02-07 12:00:27'),
+(12, 5, 'BIKE DOWN PAYMENT ', 10000, '2020-02-10 10:24:37'),
+(13, 5, 'GPS TRACKER WITH 03 YEAR RECHARGE', 12000, '2020-02-10 10:24:37'),
+(14, 5, 'PERSONAL INSURANCE 03 YEAR ', 3000, '2020-02-10 10:24:37'),
+(15, 6, 'BIKE DOWN PAYMENT ', 13500, '2020-02-15 05:12:46'),
+(16, 6, 'GPS TRACKER WITH 03 YEAR RECHARGE ', 12000, '2020-02-15 05:12:46'),
+(17, 6, 'PERSONAL ACCIDENTLY  INSURANCE 03 YEAR ', 4500, '2020-02-15 05:12:46'),
+(18, 6, 'WITHOUT CUSTOMER ', 15000, '2020-02-15 05:12:46'),
+(19, 6, '', 0, '2020-02-15 05:12:46'),
+(20, 7, 'MY SKY REGISTRATION ', 16000, '2020-02-15 05:52:23'),
+(21, 8, 'BIKE DOWN PAYMENT ', 10000, '2020-02-15 09:22:20'),
+(22, 8, 'GPS TRACKER WITH 03 YEAR REACHARGE ', 12000, '2020-02-15 09:22:20'),
+(23, 8, 'PERSONAL INSURANCE 03 YEAR ', 3000, '2020-02-15 09:22:20'),
+(24, 9, 'BIKE DOWN PAYMENT ', 19500, '2020-02-17 05:32:31'),
+(25, 9, 'GPS TRACKER WITH 03 YEAR RECHARGE', 12000, '2020-02-17 05:32:31'),
+(26, 9, 'PERSONAL ACCIDENTLY INSURANCE 03 YEAR ', 3000, '2020-02-17 05:32:31'),
+(27, 10, 'BIKE DOWN PAYMENT ', 13000, '2020-02-18 13:59:31'),
+(28, 10, 'GPS TRACKER WITH 03 YEAR RECHARGE ', 12000, '2020-02-18 13:59:31'),
+(29, 10, 'PERSONAL ACCIDENTLY INSURANCE 03 YEAR ', 5000, '2020-02-18 13:59:31'),
+(30, 10, 'WITHAOUT COUSTMER ', 15000, '2020-02-18 13:59:31'),
+(32, 11, 'BIKE DOWN PAYMENT ', 10000, '2020-02-28 08:16:02'),
+(33, 11, 'GPS TRACKER WITH 3 YEAR REACHARGE ', 15000, '2020-02-28 08:16:02'),
+(34, 11, 'PERSONAL ACCIDENTLY INSURANCE 3 YEAR ', 3000, '2020-02-28 08:16:02'),
+(35, 11, 'WITHOUT COUSTMER ', 14000, '2020-02-28 08:16:02'),
+(36, 12, 'BIKE DOWN PAYMENT ', 10000, '2020-02-28 08:21:21'),
+(37, 12, 'GPS TRACKER WITH 03 YEAR REACHARGE  ', 15000, '2020-02-28 08:21:21'),
+(38, 12, 'PERSONAL ACCIDENTLY INSURANCE 03 YEAR ', 3000, '2020-02-28 08:21:21'),
+(39, 12, 'WITHOUT COUSTMER ', 14000, '2020-02-28 08:21:21'),
+(40, 13, 'BIKE DOWN PAYMENT ', 10000, '2020-02-28 09:00:26'),
+(41, 13, 'GPD TRACKER WITH 03 YEAR REACHRGE ', 15000, '2020-02-28 09:00:26'),
+(42, 13, 'PERSONAL ACCIDENTLY INSURANCE 03 YEAR ', 3000, '2020-02-28 09:00:26'),
+(43, 13, 'WITHOUT COUSTMER ', 14000, '2020-02-28 09:00:26'),
+(44, 14, 'BIKE DOWN PAYMENT', 10000, '2020-03-09 08:40:02'),
+(45, 14, 'GPS TRACKER WITH 03 YEAR REACHRGE', 12000, '2020-03-09 08:40:02'),
+(46, 14, 'PERSONAL INSURANCE 03 YEAR', 3000, '2020-03-09 08:40:02'),
+(47, 15, 'BIKE DOWN PAYMENT ', 10000, '2020-03-09 08:41:44'),
+(48, 15, 'GPS TRACKER WITH 03 YEAR REACHRGE ', 12000, '2020-03-09 08:41:44'),
+(49, 15, 'PERSONAL INSURANCE 03 YEAR ', 3000, '2020-03-09 08:41:44'),
+(50, 16, 'BIKE DOWN PAYMENT ', 10000, '2020-03-09 09:14:42'),
+(51, 16, 'GPS TRACKER WITH 03 YEAR REACHRGE ', 12000, '2020-03-09 09:14:42'),
+(52, 16, 'PERSONAL INSURANCE 03 YEAR + WITHOUT COUSTMER CHARGES', 23000, '2020-03-09 09:14:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `user_id` bigint(20) NOT NULL,
+  `company_id` bigint(20) NOT NULL,
+  `roll_id` int(11) DEFAULT NULL,
+  `srm_id` bigint(20) DEFAULT NULL COMMENT 'added_SRM_id_if_roll_4_RM ,  added_RM_id_if_roll_6_CRE',
+  `user_name` varchar(250) NOT NULL,
+  `user_city` varchar(150) NOT NULL,
+  `user_email` varchar(250) NOT NULL,
+  `user_mobile` varchar(12) NOT NULL,
+  `user_password` varchar(100) NOT NULL,
+  `user_status` varchar(20) NOT NULL DEFAULT 'active',
+  `user_addedby` varchar(100) NOT NULL,
+  `user_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `is_admin` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `company_id`, `roll_id`, `srm_id`, `user_name`, `user_city`, `user_email`, `user_mobile`, `user_password`, `user_status`, `user_addedby`, `user_date`, `is_admin`) VALUES
+(1, 1, 1, NULL, 'Admin', 'Kolhapur', 'demo@email.com', '9876543210', '123456', 'active', 'Admin', '2020-01-08 04:25:02', 1),
+(22, 1, 1, NULL, 'RAHUL KHADE', 'Kolhapur', 'rahulkhade100@gmail.com', '9834576400', '9834576400', 'active', '1', '2020-01-27 04:56:44', 0),
+(23, 1, 3, NULL, 'PRAMOD AKARAM KAMBLE', 'KOLHAPUR', 'pramodakamble95@gmail.com', '7709392011', '7709392011', 'active', '1', '2020-01-12 08:04:53', 0),
+(24, 1, 3, NULL, 'SAIFAN  SIKANDARKHAN PATHAN', 'MUMBAI', 'saifpathan@gmail.com', '8600985142', '8600985142', 'active', '22', '2020-02-25 10:42:55', 0),
+(25, 1, 4, 24, 'NITIN SHANTARAM AMBAVANE', 'PANVEL,RAIGARH', 'nitin.ambavane@rediffgmail.com', '9324085223', ' 93240 85223', 'active', '1', '2020-01-12 08:11:32', 0),
+(27, 1, 6, 26, 'MAHESH DATTATRAY NAVLE', 'SOLAPUR', 'maheshnavle@gmail.com', '8975665554', '8975665554', 'active', '1', '2020-01-12 08:17:23', 0),
+(28, 1, 6, 26, 'SANTOSH CHOURE', 'SOLAPUR', 'santoshchoure@gmail.com', '9022852385', '9022852385', 'active', '1', '2020-01-12 08:18:30', 0),
+(33, 1, 4, 22, 'MAHESH SUNIL TATE', 'KOLHAPUR', 'mhayatate0808@gmail.com', '7559210316', '7559210316', 'active', '1', '2020-01-14 04:40:01', 0),
+(38, 1, 5, NULL, 'SACHIN SATGONDA PATIL', 'KOLHAPUR', '', '9307477408', '9307477408', 'active', '1', '2020-01-14 09:00:59', 0),
+(45, 1, 4, 23, 'MO. AKIL KHAN', 'LUCKNOWN', 'akilkhan8092@gmail.com', '9935903333', '9935903333', 'active', '22', '2020-01-28 05:35:56', 0),
+(46, 1, 5, NULL, 'MOHAMMAD ANAS', 'LUCKNOWN', '', '7525044572', '7525044572', 'active', '22', '2020-01-28 05:42:18', 0),
+(47, 1, 5, NULL, 'DASTGEER', 'LUCKNOWN', '', '7518422112', '7518422112', 'active', '22', '2020-01-28 05:52:11', 0),
+(48, 1, 5, NULL, 'SHUBHAM  KUMAR', 'LUCKNOWN', '', '7390897070', '7390897070', 'active', '1', '2020-01-29 05:07:26', 0),
+(49, 1, 4, 23, 'SURESH RAJESH KUMAR', 'NAGPUR ', 'yadavsuresh794@gmail.com', '8700671022', '8700671022', 'active', '22', '2020-01-29 06:14:08', 0),
+(51, 1, 5, NULL, 'SANJAY JAGANNATH KARANDE', 'SANGLI', '', '9673979836', '9673979836', 'active', '1', '2020-02-11 13:53:39', 0),
+(52, 1, 5, NULL, 'ASHWINI  CHANDRAKANT  KAMBLE', 'KOLHAPUR', '', '9130828637', '9130828637', 'active', '22', '2020-01-29 06:44:11', 0),
+(53, 1, 5, NULL, 'PRAVIN BALASO HINGMIRE', 'KOLHAPUR', '', '917666220585', '7666220585', 'active', '22', '2020-01-29 06:48:20', 0),
+(54, 1, 5, NULL, 'NEMCHAND GAJENDRA SANADI', 'KOLHAPUR', '', '919881050587', '9881050587', 'active', '22', '2020-01-29 06:58:52', 0),
+(55, 1, 5, NULL, 'SANJAY  MALAPPA  AVATI', 'KOLHAPUR', '', '9689402696', '9689402696', 'active', '22', '2020-01-29 07:03:31', 0),
+(56, 1, 5, NULL, 'TATOBA  ANNASO  HINGAMIRE', 'KOLHAPUR', '', '9172037176', '91720307176', 'active', '22', '2020-01-29 07:11:43', 0),
+(57, 1, 5, NULL, 'MHADAGONDA  APPASO   PATIL', 'KOLHAPUR', '', '9767088085', '9767088089', 'active', '22', '2020-03-02 09:43:58', 0),
+(58, 1, 5, NULL, 'KUMAR  MAHADEV  SUTAR', 'KOLHAPUR', '', '9763894530', '9763894530', 'active', '22', '2020-01-29 07:25:55', 0),
+(59, 1, 5, NULL, 'SACHIN  TATGONDA  PATIL', 'KOLHAPUR', '', '919307477408', '9307477408', 'active', '22', '2020-01-29 07:51:49', 0),
+(60, 1, 5, NULL, 'ASHOK  RAGHUNATH  SUTAR', 'KOLHAPUR', '', '9623308440', '9623308440', 'active', '22', '2020-02-05 06:59:03', 0),
+(61, 1, 2, NULL, 'RAHUL DATTATRAY KHADE', 'KOLHAPUR', 'RAHULKHADE100@GMAIL.COM', '919834576400', '9834576400', 'active', '22', '2020-02-06 12:47:32', 0),
+(62, 1, 5, NULL, 'AMAR KRISHNAT TIPUGDE', 'KOLHAPUR', '', '9823811836', '9823811836', 'active', '22', '2020-02-06 12:51:15', 0),
+(63, 1, 5, NULL, 'DIPALI  SHIVRAJ  GURAV', 'KOLHAPUR', '', '9371618282', '9371618282', 'active', '22', '2020-02-07 11:45:40', 0),
+(65, 1, 4, 23, 'OMKAR SHAMRAO CHAVAN', 'KOLHAPUR', 'omkarchavan0647@gmail.com', '7499228484', '7499228484', 'active', '22', '2020-02-10 07:26:14', 0),
+(66, 1, 6, 0, 'UDAY RAGHUNATH KAMBLE', 'KOLHAPUR', 'kambleuday0@gmial.com', '9689266066', '9689266066', 'deactivate', '22', '2020-02-10 07:59:48', 0),
+(67, 1, 6, 65, 'UDAY RAGHUNATH KAMBLE', 'KOLHAPUR', 'kambleuday0@gmial.com', '919689266066', '9689266066', 'active', '22', '2020-02-10 07:58:56', 0),
+(69, 1, 5, NULL, 'SHUBHAM DILIP GAIKWAD', 'SANGLI', '', '9665125375', '9665125375', 'active', '1', '2020-02-11 13:59:08', 0),
+(70, 1, 5, NULL, 'KRUSHANATH SURESH ZENDE', 'SANGLI', '', '8055849898', '8055849898', 'active', '1', '2020-02-11 14:27:17', 0),
+(71, 1, 5, NULL, 'NITIN  SHANATARAM  AMBAVANE', 'PANVEL ', '', '919324085223', '9324085223', 'active', '22', '2020-02-13 13:27:15', 0),
+(73, 1, 5, NULL, 'EKNATH  KISHOR SHINDE', 'MUMBAI', '', '9664091957', '9664091957', 'active', '22', '2020-02-15 05:21:44', 0),
+(74, 1, 5, NULL, 'GOPINATH  NARAYAN  JAGTAP', 'MUMBAI', '', '9766996616', '9766996616', 'active', '22', '2020-02-15 05:33:24', 0),
+(75, 1, 5, NULL, 'OMKAR  LALURAM  KUMAWAT', 'MUMBAI', '', '9324085224', '9324085224', 'active', '22', '2020-02-15 05:50:40', 0),
+(76, 1, 4, 23, 'SANTOSH  AMARLAL  NIRANKARI', 'KOLHAPUR', 'NIRANKARISANTOSH61@GMAIL.COM', '9404358713', '9404358713', 'active', '22', '2020-02-15 09:05:30', 0),
+(77, 1, 5, NULL, 'SAGAR  BAKSHARAM  GOGIYA', 'KOLHAPUR', '', '8888000572', '8888000572', 'active', '22', '2020-02-15 09:16:36', 0),
+(78, 1, 4, 23, 'PAVAN  RAJARAM  KHANDEKAR', 'SOLAPUR ', 'KHANDEKARPAVAN101@GMAIL.COM', '8624862027', '8624862027', 'active', '22', '2020-02-15 09:49:21', 0),
+(79, 1, 5, NULL, 'YUNNUS  BASHIR  INAMADAR', 'SOLAPUR ', '', '7756868624', '7756868624', 'active', '22', '2020-02-15 10:03:31', 0),
+(80, 1, 5, NULL, 'SAIFALI  ALLAUDDIN  TAMBOLI', 'SOLAPUR ', '', '7219854598', '7219854598', 'active', '22', '2020-02-15 10:06:43', 0),
+(81, 1, 5, NULL, 'CHAYA VIJAY VATAKAR', 'KOLHAPUR', '', '9527878826', '9527878826', 'active', '22', '2020-02-15 10:24:13', 0),
+(82, 1, 5, NULL, 'ASHOK SURESH DIVATE', 'KOLHAPUR', '', '9881692717', '9881692717', 'active', '22', '2020-02-15 10:27:07', 0),
+(84, 1, 5, NULL, 'MAHESH  PUNDLIK  KAMBLE', 'KOLHAPUR', '', '7588185172', '7588185172', 'active', '22', '2020-02-18 07:47:46', 0),
+(85, 1, 4, 23, 'ROHIT  MARUTI  KAMBLE', 'SOLAPUR ', 'rohitkamble4176@gmail.com', '9545864176', '9545864176', 'active', '22', '2020-02-25 06:22:50', 0),
+(86, 1, 5, NULL, 'SUDARSHAN  GOVIND  GUNDLE', 'NANDED ', '', '9158407048', '9158407048', 'active', '22', '2020-02-25 06:26:50', 0),
+(87, 1, 5, NULL, 'ABHIJIT  EKANATH  PATIL', 'KOLHAPUR', '', '9970704658', '9970704658', 'active', '22', '2020-02-25 07:28:18', 0),
+(88, 1, 5, NULL, 'RIZWAN  RAFIK  BAGWAN', 'MUMBAI', '', '8898453373', '8898453373', 'active', '22', '2020-02-25 10:51:26', 0),
+(89, 1, 5, NULL, 'FARUK  MOHAMMED  HANIF  SHEKH', 'MUMBAI', '', '9768552050', '9768552050', 'active', '22', '2020-02-25 11:12:10', 0),
+(90, 1, 5, NULL, 'NAZIA  SHAHNAWAZ  SAYYED', 'MUMBAI', '', '7738524802', '7738524802', 'active', '22', '2020-02-25 11:24:35', 0),
+(91, 1, 5, NULL, 'MANOJ  MADHAV  CHAUHAN', 'MUMBAI', '', '8108007478', '8108007478', 'active', '22', '2020-02-25 11:36:43', 0),
+(92, 1, 5, NULL, 'SHIVAJI  DINAKAR  MAGADUM', 'KOLHAPUR', '', '8805129939', '8805129939', 'active', '22', '2020-02-26 07:07:19', 0),
+(95, 1, 5, NULL, 'KUNDALIK  ISHWARA  PATIL', 'KOLHAPUR', '', '8390104342', '8390104342', 'active', '22', '2020-02-28 08:52:38', 0),
+(96, 1, 5, NULL, 'SARITA  ANIL  PATIL', 'KOLHAPUR', '', '9765137711', '9765137711', 'active', '22', '2020-03-08 08:52:52', 0),
+(97, 1, 5, NULL, 'BALKRUSHN  SHIVRAM  JADHAV', 'KOLHAPUR', '', '9405170116', '9405170116', 'active', '22', '2020-03-08 08:57:49', 0),
+(98, 1, 5, NULL, 'SAVITA  ARUN  POWAR', 'KOLHAPUR', '', '9422226461', '9422226461', 'active', '22', '2020-03-08 09:00:45', 0),
+(99, 1, 5, NULL, 'ANUJA  SANTOSH  SWAMI', 'KOLHAPUR', '', '8265093538', '8265093538', 'active', '22', '2020-03-08 09:05:32', 0),
+(100, 1, 5, NULL, 'VIJAY  SURESH  KUMBHAR', 'KOLHAPUR', '', '9011671983', '9011671983', 'active', '22', '2020-03-08 09:10:28', 0),
+(101, 1, 2, NULL, 'SS123456', 'KOLHAPUR', 'RAHULKHADE100@GMAIL.COM', '919834576400', '9834576400', 'active', '22', '2020-03-08 10:20:33', 0),
+(102, 1, 5, NULL, 'PRITI  PRAMOD  GURAV', 'KOLHAPUR', '', '9975647221', '9975647221', 'active', '22', '2020-03-09 08:36:23', 0),
+(103, 1, 5, NULL, 'SANJAY  BHUAL  KOTHALI', 'KOLHAPUR', '', '9767747808', '9767747809', 'active', '22', '2020-03-09 09:07:22', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_rel`
+--
+
+CREATE TABLE `user_rel` (
+  `user_rel_id` bigint(20) NOT NULL,
+  `rm_id` bigint(20) NOT NULL COMMENT 'rm user id',
+  `srm_id` bigint(20) NOT NULL COMMENT 'srm user id'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicle_reg`
+--
+
+CREATE TABLE `vehicle_reg` (
+  `vehicle_reg_id` bigint(20) NOT NULL,
+  `company_id` bigint(20) NOT NULL,
+  `sponser_id` varchar(50) DEFAULT NULL,
+  `full_name` varchar(250) DEFAULT NULL,
+  `mobile_no` varchar(20) DEFAULT NULL,
+  `email` varchar(250) DEFAULT NULL,
+  `address` text,
+  `city` varchar(250) DEFAULT NULL,
+  `state` varchar(250) DEFAULT NULL,
+  `country` varchar(250) DEFAULT NULL,
+  `amount` double DEFAULT NULL,
+  `payment_type` varchar(50) DEFAULT NULL,
+  `transaction_no` varchar(100) DEFAULT NULL,
+  `vehicle_name` varchar(250) DEFAULT NULL,
+  `vehicle_image` varchar(100) DEFAULT NULL,
+  `vehicle_reg_addedby` varchar(50) DEFAULT NULL,
+  `vehicle_reg_status` varchar(20) NOT NULL DEFAULT 'active',
+  `vehicle_reg_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`admin_id`);
+
+--
+-- Indexes for table `company`
+--
+ALTER TABLE `company`
+  ADD PRIMARY KEY (`company_id`);
+
+--
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`customer_id`);
+
+--
+-- Indexes for table `customer_type`
+--
+ALTER TABLE `customer_type`
+  ADD PRIMARY KEY (`customer_type_id`);
+
+--
+-- Indexes for table `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`news_id`);
+
+--
+-- Indexes for table `roll`
+--
+ALTER TABLE `roll`
+  ADD PRIMARY KEY (`roll_id`);
+
+--
+-- Indexes for table `sale`
+--
+ALTER TABLE `sale`
+  ADD PRIMARY KEY (`sale_id`);
+
+--
+-- Indexes for table `sale_descr`
+--
+ALTER TABLE `sale_descr`
+  ADD PRIMARY KEY (`sale_descr_id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`user_id`);
+
+--
+-- Indexes for table `user_rel`
+--
+ALTER TABLE `user_rel`
+  ADD PRIMARY KEY (`user_rel_id`);
+
+--
+-- Indexes for table `vehicle_reg`
+--
+ALTER TABLE `vehicle_reg`
+  ADD PRIMARY KEY (`vehicle_reg_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `company`
+--
+ALTER TABLE `company`
+  MODIFY `company_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `customer_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+
+--
+-- AUTO_INCREMENT for table `customer_type`
+--
+ALTER TABLE `customer_type`
+  MODIFY `customer_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `news`
+--
+ALTER TABLE `news`
+  MODIFY `news_id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `roll`
+--
+ALTER TABLE `roll`
+  MODIFY `roll_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `sale`
+--
+ALTER TABLE `sale`
+  MODIFY `sale_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `sale_descr`
+--
+ALTER TABLE `sale_descr`
+  MODIFY `sale_descr_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `user_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+
+--
+-- AUTO_INCREMENT for table `user_rel`
+--
+ALTER TABLE `user_rel`
+  MODIFY `user_rel_id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `vehicle_reg`
+--
+ALTER TABLE `vehicle_reg`
+  MODIFY `vehicle_reg_id` bigint(20) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
